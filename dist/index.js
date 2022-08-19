@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const path = require("path");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5500;
 const app = (0, express_1.default)();
 app.use(express_1.default.static(path.join(__dirname, '../public')));
 app.use(express_1.default.static(path.join(__dirname, '../public/css')));

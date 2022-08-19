@@ -6,11 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/main.css">
+
+    <script>
+      function buttonPress() {
+        if (document.getElementById("c00").style.borderBottomColor != "red") {
+            document.getElementById("c00").style.borderBottomColor = "red";
+            document.getElementById("c01").style.borderBottomColor = "red";
+            document.getElementById("c10").style.borderTopColor = "red";
+            document.getElementById("c11").style.borderTopColor = "red";
+        }else{
+            document.getElementById("c00").style.borderBottomColor = "black";
+            document.getElementById("c01").style.borderBottomColor = "black";
+            document.getElementById("c10").style.borderTopColor = "black";
+            document.getElementById("c11").style.borderTopColor = "black";
+        }
+  
+      }
+    </script>
 </head>
 <body>
-    <h1>Hello</h1>
-    <h2>
-        <%= text %>
-    </h2>
+  <div>
+    <button type="button" onclick="buttonPress()">click</button>
+  </div>
+  
+
+  <div class="grid-container">
+    <div class="item" id = "c00">00</div>
+    <div class="item" id = "c01">01</div>
+    <div class="item">02</div>
+    <div class="item" id = "c10">10</div>  
+    <div class="item" id = "c11">11</div>
+    <div class="item">12</div>
+    <div class="item">20</div>  
+    <div class="item">21</div>
+    <div class="item">22</div>
+  </div>
 </body>
 </html>

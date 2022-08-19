@@ -1,3 +1,34 @@
-body {
-    background-color: cyan;
-}
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 0px;
+    column-gap: 8px;
+    row-gap: 8px;
+  }
+  .item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 15px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    width: 100px;
+    height: 100px
+  }
+  /*
+  #c00{
+    border-bottom-color: red;
+  }
+
+  #c01{
+    border-bottom-color: red;
+  }
+
+  #c10{
+    border-top-color: red;
+  }
+
+  #c11{
+    border-top-color: red;
+  }
+  */
