@@ -1,19 +1,22 @@
 import express, { Express, Request, Response } from 'express';
-import bodyParser from 'body-parser';
-import helmet from 'helmet';
+const path = require("path");
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
-const app: Express = express();
+const PORT = process.env.PORT || 4000;
+const app = express();
 
-app.use(helmet());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public/css')));
+app.use(express.static(path.join(__dirname, '../public/js')));  
+app.use(express.static(path.join(__dirname, '../public/img')));                  
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('<h1>Hello from the TypeScript world!</h1>');
+app.set('views', path.join(__dirname, '../views'));
+app.set('view engine', 'ejs')
+
+app.get('', (req: Request, res: Response) => {
+  res.render('index.ejs', {text: 'This is EJS'});
 });
 
-app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
+app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));                             
