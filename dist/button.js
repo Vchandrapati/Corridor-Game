@@ -1,6 +1,5 @@
 "use strict";
 function buttonPress() {
-    window.alert("yes");
     if (document.getElementById("c00").style.borderBottomColor != "red") {
         document.getElementById("c00").style.borderBottomColor = "red";
         document.getElementById("c01").style.borderBottomColor = "red";
