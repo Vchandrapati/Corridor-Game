@@ -1,14 +1,12 @@
-.grid-container {
+  .grid-container {
     display: inline-grid;
     grid-template-columns: auto auto auto;
     background-color: #2196F3;
     padding: 0px;
-    column-gap: 8px;
-    row-gap: 8px;
   }
   .item {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 15px solid rgba(0, 0, 0, 0.8);
+    border: 15px solid rgba(0, 0, 0, 1);
     padding: 20px;
     font-size: 30px;
     text-align: center;
