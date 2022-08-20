@@ -1,18 +1,29 @@
   .grid-container {
+    position: absolute;
     display: inline-grid;
-    grid-template-columns: auto;
     background-color: #2196F3;
     padding: 0px;
   }
   .item {
     background-color: rgba(255, 255, 255, 0.8);
-    border: 15px solid rgba(0, 0, 0, 1);
-    padding: 20px;
+    border: 9px solid rgba(0, 0, 0, 1);
     font-size: 30px;
     text-align: center;
-    width: 100px;
-    height: 100px
+    width: 85px;
+    height: 85px;
+    position: relative;
   }
+  .button{
+    position: absolute;
+    left:85px;
+    top:85px;
+    background-color: red;
+    width: 18px;
+    height: 18px;
+    z-index: 10;
+  }
+
+
   /*
   #c00{
     border-bottom-color: red;
