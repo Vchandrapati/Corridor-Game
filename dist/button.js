@@ -1,5 +1,6 @@
 "use strict";
-function buttonPress() {
+const myButton = document.getElementById("test");
+myButton.addEventListener("click", () => {
     if (document.getElementById("c00").style.borderBottomColor != "red") {
         document.getElementById("c00").style.borderBottomColor = "red";
         document.getElementById("c01").style.borderBottomColor = "red";
@@ -12,4 +13,4 @@ function buttonPress() {
         document.getElementById("c10").style.borderTopColor = "black";
         document.getElementById("c11").style.borderTopColor = "black";
     }
-}
+});

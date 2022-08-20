@@ -7,9 +7,9 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
 
+app.use("/dist", express.static('./dist/'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../public/css')));
-app.use(express.static(path.join(__dirname, '../public/js')));  
 app.use(express.static(path.join(__dirname, '../public/img')));                  
 
 app.set('views', path.join(__dirname, '../views'));

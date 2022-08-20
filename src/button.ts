@@ -1,14 +1,16 @@
-function buttonPress() {
+const myButton = document.getElementById("test") as HTMLElement; 
+myButton.addEventListener("click", () => {
     if (document.getElementById("c00")!.style.borderBottomColor != "red") {
         document.getElementById("c00")!.style.borderBottomColor = "red";
         document.getElementById("c01")!.style.borderBottomColor = "red";
         document.getElementById("c10")!.style.borderTopColor = "red";
         document.getElementById("c11")!.style.borderTopColor = "red";
-    }else{
+    }
+    else
+    {
         document.getElementById("c00")!.style.borderBottomColor = "black";
         document.getElementById("c01")!.style.borderBottomColor = "black";
         document.getElementById("c10")!.style.borderTopColor = "black";
         document.getElementById("c11")!.style.borderTopColor = "black";
     }
-
-  }
+});
