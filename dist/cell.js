@@ -5,7 +5,7 @@ width -= 1;
 for (let i = 0; i <= width; i++) {
     for (let j = 0; j <= width; j++) {
         if (i <= width - 1 && j <= width - 1) {
-            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\"><div class=\"button\" id=\"b${i}${j}\" onclick=\"click(\"b00\")\"></div></div>`;
+            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\"><div class=\"button\" id=\"b${i}${j}\" onclick=\"click()\"></div></div>`;
         }
         else {
             table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\"></div>`;
