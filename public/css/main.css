@@ -17,27 +17,8 @@
     position: absolute;
     left:85px;
     top:85px;
-    background-color: red;
+    background-color: blue;
     width: 18px;
     height: 18px;
     z-index: 10;
   }
-
-
-  /*
-  #c00{
-    border-bottom-color: red;
-  }
-
-  #c01{
-    border-bottom-color: red;
-  }
-
-  #c10{
-    border-top-color: red;
-  }
-
-  #c11{
-    border-top-color: red;
-  }
-  */
