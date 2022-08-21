@@ -1,24 +1,48 @@
   .grid-container {
     position: absolute;
     display: inline-grid;
-    background-color: #2196F3;
+    background-color: #19647eff;
     padding: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   .item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 9px solid rgba(0, 0, 0, 1);
+    background-color: #f4d35eff;
+    border: 5px solid #1f271bff;
     font-size: 30px;
     text-align: center;
-    width: 85px;
-    height: 85px;
+    width: 51px;
+    height: 51px;
     position: relative;
   }
   .button{
     position: absolute;
-    left:85px;
-    top:85px;
-    background-color: blue;
-    width: 18px;
-    height: 18px;
+    left:51px;
+    top:51px;
+    background-color: #666666;
+    width: 10px;
+    height: 10px;
     z-index: 10;
   }
+
+  body{
+    background-color: #19647eff;
+  }
+
+  #title{
+    text-align: center;
+    font-size: 40px;
+    color: #ee964bff;
+    font-family: montserrat,sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  /*
+ CSS HEX 
+--midnight-blue: #031a6bff;
+--celadon-blue: #087ca7ff;
+--yale-blue: #004385ff;
+--cerulean-crayola: #05b2dcff;
+
+  */

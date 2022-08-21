@@ -1,16 +1,20 @@
-const myButton = document.getElementById("test") as HTMLElement; 
+/*
+const myButton = document.getElementById("b00") as HTMLElement; 
 myButton.addEventListener("click", () => {
     if (document.getElementById("c00")!.style.borderBottomColor != "red") {
         document.getElementById("c00")!.style.borderBottomColor = "red";
         document.getElementById("c01")!.style.borderBottomColor = "red";
         document.getElementById("c10")!.style.borderTopColor = "red";
         document.getElementById("c11")!.style.borderTopColor = "red";
-    }
-    else
-    {
-        document.getElementById("c00")!.style.borderBottomColor = "black";
-        document.getElementById("c01")!.style.borderBottomColor = "black";
-        document.getElementById("c10")!.style.borderTopColor = "black";
-        document.getElementById("c11")!.style.borderTopColor = "black";
+        myButton.style.display = "none";
     }
 });
+*/
+function click(buttonID: String){
+    if (document.getElementById("c00")!.style.borderBottomColor != "red") {
+        document.getElementById("c00")!.style.borderBottomColor = "red";
+        document.getElementById("c01")!.style.borderBottomColor = "red";
+        document.getElementById("c10")!.style.borderTopColor = "red";
+        document.getElementById("c11")!.style.borderTopColor = "red";
+    }
+}
