@@ -13,3 +13,4 @@ for (let i = 0; i <= width; i++) {
     table.style.gridTemplateColumns += " auto";
 }
 table.style.left = `${(document.body.clientWidth / 2) - (table.clientWidth / 2)}` + 'px';
+table.style.top = `${(document.body.clientHeight / 2) + (table.clientHeight / 1.5)}` + 'px';
