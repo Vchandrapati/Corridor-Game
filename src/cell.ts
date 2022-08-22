@@ -15,6 +15,31 @@ for(let i = 0; i <= width; i++)
     table.style.gridTemplateColumns += " auto";
 }
 
+const max = 100;
+const size = 25;
+
+const player1 = document.createElement("div");
+player1.id = "p1";
+player1.style.position = "absolute";
+player1.style.height = max - size + "%";
+player1.style.width = max - size + "%";
+player1.style.top = size/2 + "%";
+player1.style.left = size/2 + "%";
+player1.style.backgroundColor = "red";
+player1.style.borderRadius = "50% 50% 50% 50%"
+document.getElementById(`c04`)?.appendChild(player1);
+
+const player2 = document.createElement("div");
+player2.id = "p2";
+player2.style.position = "absolute";
+player2.style.height = max - size + "%";
+player2.style.width = max - size + "%";
+player2.style.top = size/2 + "%";
+player2.style.left = size/2 + "%";
+player2.style.backgroundColor = "blue";
+player2.style.borderRadius = "50% 50% 50% 50%"
+document.getElementById(`c84`)?.appendChild(player2);
+
 document.getElementById("c00")!.style.borderRadius = "15px 0px 0px 0px";
 document.getElementById(`c0${width}`)!.style.borderRadius = "0px 15px 0px 0px";
 document.getElementById(`c${width}0`)!.style.borderRadius = "0px 0px 0px 15px";

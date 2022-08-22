@@ -12,14 +12,14 @@
     border: 5px solid #000000;
     font-size: 30px;
     text-align: center;
-    width: 51px;
-    height: 51px;
+    width: 50px;
+    height: 50px;
     position: relative;
   }
   .button{
     position: absolute;
-    left:51px;
-    top:51px;
+    left:50px;
+    top:50px;
     background-color: #666666;
     width: 10px;
     height: 10px;
