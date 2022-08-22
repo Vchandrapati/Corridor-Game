@@ -7,7 +7,6 @@ for(let i = 0; i < 8; i++){
         myButtons[count] = document.getElementById(`b${i}${j}`) as HTMLElement; 
 
         myButtons[count].addEventListener("contextmenu", () => {
-
             console.log("hi");
             if(rotate)
             rotate = false;
@@ -16,10 +15,6 @@ for(let i = 0; i < 8; i++){
             
             clear();
             preview("red");
-        });
-
-        myButtons[count].addEventListener("click", () => {
-            console.log(`clicked b${i}${j}`);
         });
         myButtons[count].addEventListener("click", () => {
             console.log("hi");
@@ -85,4 +80,3 @@ for(let i = 0; i < 8; i++){
         count++;
     }  
 }
-
