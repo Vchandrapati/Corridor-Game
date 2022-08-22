@@ -49,6 +49,7 @@ for (let i = 0; i < 8; i++) {
                     document.getElementById(`c${i + 1}${j + 1}`).style.borderTopColor = "red";
                 }
             }
+            checkInvalidButtons();
         });
         //mouse hover over listener for buttons
         myButtons[count].addEventListener("mouseover", () => {
@@ -63,7 +64,7 @@ for (let i = 0; i < 8; i++) {
         });
         //function to set the colour of the blocks
         function preview(colour) {
-            invalid();
+            checkInvalidBlocks();
             if (!rotate) { //if horizontal 
                 if (!vertOnly) {
                     document.getElementById(`c${i}${j}`).style.borderBottomColor = `${colour}`;
@@ -115,9 +116,15 @@ for (let i = 0; i < 8; i++) {
                 }
             }
         }
-        //vikil to do this check the buttons which are on the same plane (vert or horz), then check if that button has a red block next to it on the perpendicular plane
-        //so if the original plane was horz, u check if the button to the left has a red block on the vert plane, then do that for the right button then done 
         function checkInvalidButtons() {
+            for (let x = 0; x < 8; x++) {
+                for (let y = 0; y < 8; y++) {
+                    if ((document.getElementById(`c${x}${y}`).style.borderRightColor == "red" || document.getElementById(`c${x + 1}${y}`).style.borderRightColor == "red")
+                        && (document.getElementById(`c${x}${y}`).style.borderBottomColor == "red" || document.getElementById(`c${x}${y + 1}`).style.borderBottomColor == "red")) {
+                        document.getElementById(`b${x}${y}`).style.display = "none";
+                    }
+                }
+            }
         }
         count++;
     }
