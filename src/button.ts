@@ -1,14 +1,14 @@
 let myButtons = []
-let myCells= []
+let myCellsClick= []
 let skipArr: string[] = []
 let rotate = false, mOut = false, vertOnly = false, horzOnly = false
 let count = 0;
 let color = "rgba(255, 0, 0, 0.7)";
 for(let i = 0; i < 9; i++){
     for(let j = 0;j < 9;j++ ){
-        myCells[count] = document.getElementById(`c${i}${j}`) as HTMLElement; 
+        myCellsClick[count] = document.getElementById(`cc${i}${j}`) as HTMLElement; 
 
-        myCells[count].addEventListener("click", () => {
+        myCellsClick[count].addEventListener("click", () => {
             document.getElementById(`c${i}${j}`)?.appendChild(<Node>document.getElementById("p1"));
         });
     }
