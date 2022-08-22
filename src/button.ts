@@ -25,6 +25,7 @@ for(let i = 0; i < 8; i++){
             
             clear();
             preview("red");
+        });
 
         myButtons[count].addEventListener('dblclick', () => {
             console.log(`double clicked b${i}${j}`);
