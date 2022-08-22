@@ -22,7 +22,6 @@ for (let i = 0; i < 8; i++) {
         myButtons[count].addEventListener("click", () => {
             document.getElementById(`b${i}${j}`).style.display = "none";
             mOut = true;
-            let color = "rgba(0, 99, 71, 0)";
             if (rotate) {
                 console.log(rotate);
                 document.getElementById(`c${i}${j}`).style.borderRightColor = "red";

@@ -33,9 +33,8 @@ for(let i = 0; i < 8; i++){
                 document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "red";
             }
         }); 
-        
-        myButtons[count].addEventListener("mouseover", () => {
 
+        myButtons[count].addEventListener("mouseover", () => {
             preview(color);
         });
         
