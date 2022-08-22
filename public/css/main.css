@@ -25,6 +25,9 @@
     height: 10px;
     z-index: 10;
   }
+  .button:hover{
+    background-color: #404040;
+  }
 
   body{
     background-color: #19647eff;

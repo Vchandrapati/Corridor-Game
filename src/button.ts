@@ -37,7 +37,6 @@ for(let i = 0; i < 8; i++){
             }
 
         }); 
-        
         //mouse hover over listener for buttons
         myButtons[count].addEventListener("mouseover", () => {
             preview(color);
