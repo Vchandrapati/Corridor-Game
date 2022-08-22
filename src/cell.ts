@@ -9,6 +9,10 @@ for(let i = 0; i <= width; i++)
         cell.id = `c${i}${j}`;
         cell.className = "item";
         cell.innerHTML = `${i}${j}`;
+        const clickAble = document.createElement("div");
+        clickAble.id = `cc${i}${j}`;
+        clickAble.className = "clickable";
+        cell.appendChild(clickAble);
         if(i <= width - 1 && j <= width - 1){
             const button = document.createElement("div");
             button.id = `b${i}${j}`;

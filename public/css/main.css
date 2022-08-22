@@ -16,6 +16,13 @@
     height: 50px;
     position: relative;
   }
+  .clickable{
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    right: 25%;
+  }
   .button{
     position: absolute;
     left:50px;
