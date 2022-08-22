@@ -17,7 +17,10 @@ for(let i = 0; i < 8; i++){
             clear();
             preview("red");
         });
-        
+
+        myButtons[count].addEventListener("click", () => {
+            console.log(`clicked b${i}${j}`);
+        });
         myButtons[count].addEventListener("click", () => {
             console.log("hi");
             document.getElementById(`b${i}${j}`)!.style.display = "none";
