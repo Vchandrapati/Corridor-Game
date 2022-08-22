@@ -97,7 +97,7 @@ for (let i = 0; i < 8; i++) {
             }
         }
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
-        function invalid() {
+        function checkInvalidBlocks() {
             if (rotate) {
                 if (document.getElementById(`c${i}${j}`).style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`).style.borderRightColor == "red") {
                     horzOnly = true;
