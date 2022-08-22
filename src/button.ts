@@ -20,15 +20,16 @@ for(let i = 0; i < 8; i++){
             console.log("hi");
             document.getElementById(`b${i}${j}`)!.style.display = "none";
             mOut = true;
+            let color = "rgba(0, 99, 71, 0.5)";
             if(rotate) {
                 console.log(rotate);
-                document.getElementById(`c${i}${j}`)!.style.borderRightColor = "red";
+                document.getElementById(`c${i}${j}`)!.style.borderRightColor = "color";
                 document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "red";
                 document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "red";
                 document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "red";
             } else {
                 console.log(rotate);
-                document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "red";
+                document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "color";
                 document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "red";
                 document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = "red";
                 document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "red";
