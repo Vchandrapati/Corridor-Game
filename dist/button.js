@@ -62,7 +62,7 @@ for (let i = 0; i < 8; i++) {
                     document.getElementById(`c${i + 1}${j + 1}`).style.borderTopColor = `${colour}`;
                 }
             }
-            else { //if vertical
+            else if (rotate) { //if vertical
                 if (!horzOnly) {
                     document.getElementById(`c${i}${j}`).style.borderRightColor = `${colour}`;
                     document.getElementById(`c${i + 1}${j}`).style.borderRightColor = `${colour}`;
@@ -75,11 +75,11 @@ for (let i = 0; i < 8; i++) {
         function clear() {
             if (!rotate && !horzOnly) {
                 document.getElementById(`c${i}${j}`).style.borderRightColor = "black"; //top
-                document.getElementById(`c${i + 1}${j}`).style.borderRightColor = "black";
-                document.getElementById(`c${i}${j + 1}`).style.borderLeftColor = "black"; //bottom
-                document.getElementById(`c${i + 1}${j + 1}`).style.borderLeftColor = "black";
+                document.getElementById(`c${i + 1}${j}`).style.borderRightColor = "black"; //bottom
+                document.getElementById(`c${i}${j + 1}`).style.borderLeftColor = "black"; //top
+                document.getElementById(`c${i + 1}${j + 1}`).style.borderLeftColor = "black"; //bottom
             }
-            else if (rotate && !vertOnly) {
+            if (rotate && !vertOnly) {
                 document.getElementById(`c${i}${j}`).style.borderBottomColor = "black"; //left
                 document.getElementById(`c${i + 1}${j}`).style.borderTopColor = "black";
                 document.getElementById(`c${i}${j + 1}`).style.borderBottomColor = "black"; //right
@@ -89,8 +89,10 @@ for (let i = 0; i < 8; i++) {
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
         function invalid() {
             if (rotate) {
-                if (document.getElementById(`c${i}${j}`).style.borderRightColor == "red" || document.getElementById(`c${i}${j + 1}`).style.borderLeftColor == "red") {
+                console.log("entry0");
+                if (document.getElementById(`c${i}${j}`).style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`).style.borderRightColor == "red") {
                     horzOnly = true;
+                    console.log("entry1");
                 }
                 else {
                     horzOnly = false;
@@ -99,6 +101,7 @@ for (let i = 0; i < 8; i++) {
             else {
                 if (document.getElementById(`c${i}${j}`).style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`).style.borderBottomColor == "red") {
                     vertOnly = true;
+                    console.log("entry2");
                 }
                 else {
                     vertOnly = false;
