@@ -2,6 +2,7 @@ let myButtons = [];
 let skipArr: string[] = [];
 let rotate = false, mOut = false;
 let count = 0;
+let color = "rgba(255, 0, 0, 0.7)";
 for(let i = 0; i < 8; i++){
     for(let j = 0; j < 8; j++){
         myButtons[count] = document.getElementById(`b${i}${j}`) as HTMLElement; 
@@ -14,22 +15,22 @@ for(let i = 0; i < 8; i++){
             rotate = true;
             
             clear();
-            preview("red");
+            preview(color);
         });
         myButtons[count].addEventListener("click", () => {
             console.log("hi");
             document.getElementById(`b${i}${j}`)!.style.display = "none";
             mOut = true;
-            let color = "rgba(0, 99, 71, 0.5)";
+
             if(rotate) {
                 console.log(rotate);
-                document.getElementById(`c${i}${j}`)!.style.borderRightColor = "color";
+                document.getElementById(`c${i}${j}`)!.style.borderRightColor = "red";
                 document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "red";
                 document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "red";
                 document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "red";
             } else {
                 console.log(rotate);
-                document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "color";
+                document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "red";
                 document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "red";
                 document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = "red";
                 document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "red";
@@ -38,7 +39,7 @@ for(let i = 0; i < 8; i++){
         
         myButtons[count].addEventListener("mouseover", () => {
 
-            preview("red");
+            preview(color);
         });
         
         myButtons[count].addEventListener("mouseout", () => {
