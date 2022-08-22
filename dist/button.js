@@ -1,9 +1,19 @@
 "use strict";
 let myButtons = [];
+let myCells = [];
 let skipArr = [];
 let rotate = false, mOut = false, vertOnly = false, horzOnly = false;
 let count = 0;
 let color = "rgba(255, 0, 0, 0.7)";
+for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+        myCells[count] = document.getElementById(`c${i}${j}`);
+        myCells[count].addEventListener("click", () => {
+            var _a;
+            (_a = document.getElementById(`c${i}${j}`)) === null || _a === void 0 ? void 0 : _a.appendChild(document.getElementById("p1"));
+        });
+    }
+}
 for (let i = 0; i < 8; i++) {
     for (let j = 0; j < 8; j++) {
         myButtons[count] = document.getElementById(`b${i}${j}`);
