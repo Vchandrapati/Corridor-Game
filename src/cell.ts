@@ -5,11 +5,17 @@ for(let i = 0; i <= width; i++)
 {
     for(let j = 0; j <= width; j++)
     {
+        const cell = document.createElement("div");
+        cell.id = `c${i}${j}`;
+        cell.className = "item";
+        cell.innerHTML = `${i}${j}`;
         if(i <= width - 1 && j <= width - 1){
-            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\"><div class=\"button\" id=\"b${i}${j}\"></div>${i}${j}</div>`;
-        }else{
-            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\">${i}${j}</div>`;
+            const button = document.createElement("div");
+            button.id = `b${i}${j}`;
+            button.className = "button";
+            cell.appendChild(button);
         }
+        table.appendChild(cell);
     }
 
     table.style.gridTemplateColumns += " auto";
