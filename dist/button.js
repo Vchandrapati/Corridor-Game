@@ -91,18 +91,16 @@ for (let i = 0; i < 8; i++) {
             }
             if (rotate && !vertOnly) {
                 document.getElementById(`c${i}${j}`).style.borderBottomColor = "black"; //left
-                document.getElementById(`c${i + 1}${j}`).style.borderTopColor = "black";
+                document.getElementById(`c${i + 1}${j}`).style.borderTopColor = "black"; // left
                 document.getElementById(`c${i}${j + 1}`).style.borderBottomColor = "black"; //right
-                document.getElementById(`c${i + 1}${j + 1}`).style.borderTopColor = "black";
+                document.getElementById(`c${i + 1}${j + 1}`).style.borderTopColor = "black"; //right
             }
         }
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
         function invalid() {
             if (rotate) {
-                console.log("entry0");
                 if (document.getElementById(`c${i}${j}`).style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`).style.borderRightColor == "red") {
                     horzOnly = true;
-                    console.log("entry1");
                 }
                 else {
                     horzOnly = false;
@@ -111,12 +109,15 @@ for (let i = 0; i < 8; i++) {
             else {
                 if (document.getElementById(`c${i}${j}`).style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`).style.borderBottomColor == "red") {
                     vertOnly = true;
-                    console.log("entry2");
                 }
                 else {
                     vertOnly = false;
                 }
             }
+        }
+        //vikil to do this check the buttons which are on the same plane (vert or horz), then check if that button has a red block next to it on the perpendicular plane
+        //so if the original plane was horz, u check if the button to the left has a red block on the vert plane, then do that for the right button then done 
+        function checkInvalidButtons() {
         }
         count++;
     }
