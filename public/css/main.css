@@ -3,14 +3,14 @@
     display: inline-grid;
     background-color: #19647eff;
     padding: 0px;
-    top: 60%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
   .item {
     background-color: #f4d35eff;
     border: 0.3vw solid #000000;
-    font-size: 1vw;
+    font-size: 1.7vw;
     text-align: center;
     width: 3.3vw;
     height: 3.3vw;
