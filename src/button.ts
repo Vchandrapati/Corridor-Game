@@ -63,7 +63,8 @@ for(let i = 0; i < 8; i++){
                     document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = `${colour}`;
                     document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = `${colour}`;
                 }
-            } else { //if vertical
+            } 
+            else if(rotate){ //if vertical
                 if(!horzOnly) {
                     document.getElementById(`c${i}${j}`)!.style.borderRightColor = `${colour}`;
                     document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = `${colour}`;
@@ -78,23 +79,23 @@ for(let i = 0; i < 8; i++){
         {
             if(!rotate && !horzOnly) {
                 document.getElementById(`c${i}${j}`)!.style.borderRightColor = "black";       //top
-                document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "black";
-                document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "black";    //bottom
-                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "black";  
+                document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "black"; //bottom
+                document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "black";    //top
+                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "black";  //bottom
             }
-            else if(rotate && !vertOnly) {
+            if(rotate && !vertOnly) {
                 document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "black";      //left
-                document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "black";
+                document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "black";      // left
                 document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = "black";  //right
-                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "black"; 
-            } 
+                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "black";  //right
+            }
         }
 
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
         function invalid()
         {
-            if(rotate) {
-                if(document.getElementById(`c${i}${j}`)!.style.borderRightColor == "red" || document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor == "red") {
+            if(rotate) { 
+                if(document.getElementById(`c${i}${j}`)!.style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor == "red") {
                     horzOnly = true
                 }
                 else {
@@ -109,6 +110,12 @@ for(let i = 0; i < 8; i++){
                     vertOnly = false
                 }
             }
+        }
+
+        //vikil to do this check the buttons which are on the same plane (vert or horz), then check if that button has a red block next to it on the perpendicular plane
+        //so if the original plane was horz, u check if the button to the left has a red block on the vert plane, then do that for the right button then done 
+        function checkInvalidButtons() {
+
         }
 
         count++;
