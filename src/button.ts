@@ -4,17 +4,7 @@ let rotate = false, mOut = false;
 let count = 0;
 for(let i = 0; i < 8; i++){
     for(let j = 0; j < 8; j++){
-        check();
-        function check() {
-            if(skipArr.includes(`${i}${j}`))
-            {
-                console.log("hi");
-                count++;
-            }
-        }
-
         myButtons[count] = document.getElementById(`b${i}${j}`) as HTMLElement; 
-
         myButtons[count].addEventListener("contextmenu", () => {
 
             console.log("hi");
@@ -25,13 +15,6 @@ for(let i = 0; i < 8; i++){
             
             clear();
             preview("red");
-
-        myButtons[count].addEventListener('dblclick', () => {
-            console.log(`double clicked b${i}${j}`);
-        });
-
-        myButtons[count].addEventListener("click", () => {
-            console.log(`clicked b${i}${j}`);
         });
         myButtons[count].addEventListener("click", () => {
             console.log("hi");
@@ -53,7 +36,6 @@ for(let i = 0; i < 8; i++){
         }); 
         
         myButtons[count].addEventListener("mouseover", () => {
-
             preview("red");
         });
         
@@ -62,9 +44,6 @@ for(let i = 0; i < 8; i++){
                 preview("black");
             
             mOut = false;
-
-            console.log(`hovered b${i}${j}`);
-
         });
         
         function preview(colour:String)
