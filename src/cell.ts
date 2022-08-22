@@ -60,7 +60,7 @@ player2.style.backgroundColor = "blue";
 player2.style.borderRadius = "50% 50% 50% 50%"
 document.getElementById(`c84`)?.appendChild(player2);
 
-document.getElementById("c00")!.style.borderRadius = "15px 0px 0px 0px";
-document.getElementById(`c0${width}`)!.style.borderRadius = "0px 15px 0px 0px";
-document.getElementById(`c${width}0`)!.style.borderRadius = "0px 0px 0px 15px";
-document.getElementById(`c${width}${width}`)!.style.borderRadius = "0px 0px 15px 0px";
+document.getElementById("c00")!.style.borderRadius = "1vw 0px 0px 0px";
+document.getElementById(`c0${width}`)!.style.borderRadius = "0px 1vw 0px 0px";
+document.getElementById(`c${width}0`)!.style.borderRadius = "0px 0px 0px 1vw";
+document.getElementById(`c${width}${width}`)!.style.borderRadius = "0px 0px 1vw 0px";
