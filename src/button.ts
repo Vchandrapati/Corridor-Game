@@ -9,36 +9,41 @@ for(let i = 0; i < 8; i++){
 
         //add listener for right click for the buttons
         myButtons[count].addEventListener("contextmenu", () => {
-            if(rotate) {rotate = false} //
+            if(rotate) {rotate = false} 
             else {rotate = true}
             clear()
             preview(color)
         });
         //add listener for left click for the buttons
         myButtons[count].addEventListener("click", () => {
-            document.getElementById(`b${i}${j}`)!.style.display = "none";
             mOut = true;
 
             if(rotate) {
-                console.log(rotate);
-                document.getElementById(`c${i}${j}`)!.style.borderRightColor = "red";
-                document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "red";
-                document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "red";
-                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "red";
+                if(!horzOnly) {
+                    document.getElementById(`b${i}${j}`)!.style.display = "none";
+                    document.getElementById(`c${i}${j}`)!.style.borderRightColor = "red";
+                    document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "red";
+                    document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "red";
+                    document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "red";
+                }
             } else {
-                console.log(rotate);
-                document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "red";
-                document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "red";
-                document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = "red";
-                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "red";
+                if(!vertOnly) {
+                    document.getElementById(`b${i}${j}`)!.style.display = "none";
+                    document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "red";
+                    document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "red";
+                    document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = "red";
+                    document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "red";
+                }
             }
+
         }); 
         
+        //mouse hover over listener for buttons
         myButtons[count].addEventListener("mouseover", () => {
-
             preview(color);
         });
         
+        //mouse unhover listener for buttons
         myButtons[count].addEventListener("mouseout", () => {
             if(!mOut)
                 preview("black");
@@ -46,19 +51,20 @@ for(let i = 0; i < 8; i++){
             mOut = false;
 
             console.log(`hovered b${i}${j}`);
-
         });
         
+        //function to set the colour of the blocks
         function preview(colour:String)
         {           
-            if(!rotate) {
+            invalid()
+            if(!rotate) { //if horizontal 
                 if(!vertOnly) {
                     document.getElementById(`c${i}${j}`)!.style.borderBottomColor = `${colour}`;
                     document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = `${colour}`;
                     document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = `${colour}`;
                     document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = `${colour}`;
                 }
-            } else {
+            } else { //if vertical
                 if(!horzOnly) {
                     document.getElementById(`c${i}${j}`)!.style.borderRightColor = `${colour}`;
                     document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = `${colour}`;
@@ -67,17 +73,22 @@ for(let i = 0; i < 8; i++){
                 }
             }
         }
-
+        
+        //resets colours of the blocks to default
         function clear()
         {
-            document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "black";      //left
-            document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "black";
-            document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = "black";  //right
-            document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "black";
-            document.getElementById(`c${i}${j}`)!.style.borderRightColor = "black";       //top
-            document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "black";
-            document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "black";    //bottom
-            document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "black";    
+            if(!rotate && !horzOnly) {
+                document.getElementById(`c${i}${j}`)!.style.borderRightColor = "black";       //top
+                document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor = "black";
+                document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor = "black";    //bottom
+                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderLeftColor = "black";  
+            }
+            else if(rotate && !vertOnly) {
+                document.getElementById(`c${i}${j}`)!.style.borderBottomColor = "black";      //left
+                document.getElementById(`c${i + 1}${j}`)!.style.borderTopColor = "black";
+                document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor = "black";  //right
+                document.getElementById(`c${i + 1}${j + 1}`)!.style.borderTopColor = "black"; 
+            } 
         }
 
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
@@ -87,10 +98,16 @@ for(let i = 0; i < 8; i++){
                 if(document.getElementById(`c${i}${j}`)!.style.borderRightColor == "red" || document.getElementById(`c${i}${j + 1}`)!.style.borderLeftColor == "red") {
                     horzOnly = true
                 }
+                else {
+                    horzOnly = false
+                }
             }
             else {
                 if(document.getElementById(`c${i}${j}`)!.style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor == "red") {
                     vertOnly = true
+                }
+                else {
+                    vertOnly = false
                 }
             }
         }
