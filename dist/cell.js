@@ -1,14 +1,13 @@
 "use strict";
 const table = document.getElementById("table");
-let width = 9;
-width -= 1;
+let width = 8;
 for (let i = 0; i <= width; i++) {
     for (let j = 0; j <= width; j++) {
         if (i <= width - 1 && j <= width - 1) {
-            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\"><div class=\"button\" id=\"b${i}${j}\"></div></div>`;
+            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\"><div class=\"button\" id=\"b${i}${j}\"></div>${i}${j}</div>`;
         }
         else {
-            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\"></div>`;
+            table.innerHTML += `<div class=\"item\" id = \"c${i}${j}\">${i}${j}</div>`;
         }
     }
     table.style.gridTemplateColumns += " auto";
