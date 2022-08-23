@@ -63,7 +63,7 @@ for (let i = 0; i < 8; i++) {
         });
         //function to set the colour of the blocks
         function preview(colour) {
-            invalid();
+            checkInvalidBlocks();
             if (!rotate) { //if horizontal 
                 if (!vertOnly) {
                     document.getElementById(`c${i}${j}`).style.borderBottomColor = `${colour}`;
