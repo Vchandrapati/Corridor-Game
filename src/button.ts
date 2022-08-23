@@ -7,6 +7,7 @@ for (let i = 0; i < tmpMtx.length; i++) {
 let rotate = false, mOut = false, vertOnly = false, horzOnly = false;
 let count = 0, wallCount = 1, wallLimit = 1000, funcCount = 0;
 let color = "rgba(255, 0, 0, 0.7)";
+let blacklist: any[] = [];
 instaniateGrid();
 
 
@@ -158,7 +159,13 @@ for(let i = 0; i < 8; i++){
 //#endregion
 function calcRoute() {
     mapBoard();
-
+    
+    for (let y = 0; y < maze.length; y++) {
+        for (let x = 0; x < maze.length; x++) {
+            tmpMtx[y][x] = 0;   
+        }
+    }
+    
     for (let y = 0; y < maze.length; y++) {
         for (let x = 0; x < maze.length; x++) {
             if(maze[y][x] == 2) {
@@ -183,7 +190,6 @@ function calcRoute() {
 }
 
 function step() {
-    let blacklist: any[] = [];
     let y = visited[visited.length - 1][0];
     let x = visited[visited.length - 1][1];
     
