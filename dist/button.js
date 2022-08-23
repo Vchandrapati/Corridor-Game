@@ -9,9 +9,34 @@ for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
         myCellsClick[count] = document.getElementById(`cc${i}${j}`);
         myCellsClick[count].addEventListener("click", () => {
-            var _a;
-            (_a = document.getElementById(`c${i}${j}`)) === null || _a === void 0 ? void 0 : _a.appendChild(document.getElementById("p1"));
+            console.log("ppoo");
+            validMove();
         });
+        //mouse hover over listener for playercells
+        //myCellsClick[count].addEventListener("mouseover", () => {
+        // });
+        //mouse unhover listener for playercells
+        //  myCellsClick[count].addEventListener("mouseout", () => {
+        //  });
+        function validMove() {
+            var _a, _b, _c, _d;
+            //position of previous button
+            let idBefore = (_b = (_a = document.getElementById("p1")) === null || _a === void 0 ? void 0 : _a.parentElement) === null || _b === void 0 ? void 0 : _b.id.slice(1);
+            let beforePos = parseInt(idBefore);
+            //position of current button
+            let idAfter = (_c = document.getElementById(`c${i}${j}`)) === null || _c === void 0 ? void 0 : _c.id.slice(1);
+            let afterPos = parseInt(idAfter);
+            //find direction
+            let posDiff = afterPos - beforePos;
+            console.log(beforePos);
+            if ((posDiff == -1 && document.getElementById(`c${idBefore}`).style.borderLeftColor != "red") || //left
+                (posDiff == 1 && document.getElementById(`c${idBefore}`).style.borderRightColor != "red") || //right
+                (posDiff == -10 && document.getElementById(`c${idBefore}`).style.borderTopColor != "red") || //top
+                (posDiff == 10 && document.getElementById(`c${idBefore}`).style.borderBottomColor != "red")) //bottom
+             {
+                (_d = document.getElementById(`c${i}${j}`)) === null || _d === void 0 ? void 0 : _d.appendChild(document.getElementById("p1"));
+            }
+        }
     }
 }
 for (let i = 0; i < 8; i++) {

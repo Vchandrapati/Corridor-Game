@@ -9,8 +9,42 @@ for(let i = 0; i < 9; i++){
         myCellsClick[count] = document.getElementById(`cc${i}${j}`) as HTMLElement; 
 
         myCellsClick[count].addEventListener("click", () => {
-            document.getElementById(`c${i}${j}`)?.appendChild(<Node>document.getElementById("p1"));
+
+            console.log("ppoo")
+            validMove()
         });
+
+        //mouse hover over listener for playercells
+        myCellsClick[count].addEventListener("mouseover", () => {
+        });
+        
+        //mouse unhover listener for playercells
+        myCellsClick[count].addEventListener("mouseout", () => {
+        });
+
+
+        function validMove() {
+            //position of previous button
+            let idBefore = document.getElementById("p1")?.parentElement?.id.slice(1)
+            let beforePos = parseInt(idBefore!)
+
+            //position of current button
+            let idAfter = document.getElementById(`c${i}${j}`)?.id.slice(1)
+            let afterPos = parseInt(idAfter!)
+
+            //find direction
+            let posDiff = afterPos - beforePos
+            console.log(beforePos)
+            if((posDiff == -1 && document.getElementById(`c${idBefore}`)!.style.borderLeftColor != "red") || //left
+                (posDiff == 1 && document.getElementById(`c${idBefore}`)!.style.borderRightColor != "red") || //right
+                (posDiff == -10 && document.getElementById(`c${idBefore}`)!.style.borderTopColor != "red") || //top
+                (posDiff == 10 && document.getElementById(`c${idBefore}`)!.style.borderBottomColor != "red"))  //bottom
+            {
+                document.getElementById(`c${i}${j}`)?.appendChild(<Node>document.getElementById("p1"));
+            }
+        }
+
+        
     }
 }
 for(let i = 0; i < 8; i++){
