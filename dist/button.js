@@ -6,7 +6,7 @@ for (let i = 0; i < tmpMtx.length; i++) {
     tmpMtx[i] = new Array(18).fill(0);
 }
 let rotate = false, mOut = false, vertOnly = false, horzOnly = false;
-let count = 0, wallCount = 1, wallLimit = 1000, funcCount = 0;
+let count = 0, wallCount = 1, wallLimit = 10, funcCount = 0;
 let color = "rgba(255, 0, 0, 0.7)";
 let blacklist = [];
 instaniateGrid();
@@ -14,15 +14,16 @@ for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
         myCellsClick[count] = document.getElementById(`cc${i}${j}`);
         myCellsClick[count].addEventListener("click", () => {
-            console.log("ppoo");
+            var _a, _b;
             validMove();
+            //winning condition
+            let pos = parseInt((_b = (_a = document.getElementById("p1")) === null || _a === void 0 ? void 0 : _a.parentElement) === null || _b === void 0 ? void 0 : _b.id.slice(1));
+            if (pos >= 80 && pos <= 88) {
+                //red wins
+                console.log("red wins");
+                console.log(pos);
+            }
         });
-        //mouse hover over listener for playercells
-        //myCellsClick[count].addEventListener("mouseover", () => {
-        // });
-        //mouse unhover listener for playercells
-        //  myCellsClick[count].addEventListener("mouseout", () => {
-        //  });
         function validMove() {
             var _a, _b, _c, _d;
             //position of previous button

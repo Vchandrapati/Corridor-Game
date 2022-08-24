@@ -5,7 +5,7 @@ for (let i = 0; i < tmpMtx.length; i++) {
     tmpMtx[i] = new Array(18).fill(0);
 }
 let rotate = false, mOut = false, vertOnly = false, horzOnly = false;
-let count = 0, wallCount = 1, wallLimit = 1000, funcCount = 0;
+let count = 0, wallCount = 1, wallLimit = 10, funcCount = 0;
 let color = "rgba(255, 0, 0, 0.7)";
 let blacklist: any[] = [];
 instaniateGrid();
@@ -17,6 +17,13 @@ for(let i = 0; i < 9; i++){
 
         myCellsClick[count].addEventListener("click", () => {
             validMove()
+            //winning condition
+            let pos = parseInt(document.getElementById("p1")?.parentElement?.id.slice(1)!)
+            if(pos >= 80 && pos <= 88) {
+                //red wins
+                console.log("red wins")
+                console.log(pos)
+            }
         });
 
         function validMove() {
@@ -176,6 +183,7 @@ for(let i = 0; i < 8; i++){
         count++;
     }  
 }
+
 //#endregion
 function calcRoute() {
     mapBoard();
