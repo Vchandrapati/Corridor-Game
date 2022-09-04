@@ -51,12 +51,7 @@ for (let i = 0; i < 8; i++) {
         myButtons[count] = document.getElementById(`b${i}${j}`);
         //add listener for right click for the buttons
         myButtons[count].addEventListener("contextmenu", () => {
-            if (rotate) {
-                rotate = false;
-            }
-            else {
-                rotate = true;
-            }
+            rotate = !rotate;
             clear();
             preview(color);
         });
@@ -142,20 +137,10 @@ for (let i = 0; i < 8; i++) {
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
         function checkInvalidBlocks() {
             if (rotate) {
-                if (document.getElementById(`c${i}${j}`).style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`).style.borderRightColor == "red") {
-                    horzOnly = true;
-                }
-                else {
-                    horzOnly = false;
-                }
+                horzOnly = document.getElementById(`c${i}${j}`).style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`).style.borderRightColor == "red";
             }
             else {
-                if (document.getElementById(`c${i}${j}`).style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`).style.borderBottomColor == "red") {
-                    vertOnly = true;
-                }
-                else {
-                    vertOnly = false;
-                }
+                vertOnly = document.getElementById(`c${i}${j}`).style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`).style.borderBottomColor == "red";
             }
         }
         function checkInvalidButtons() {
@@ -192,9 +177,9 @@ function calcRoute() {
         step();
     }
     //debugging
-    var opened = window.open("");
-    for (var i = 0; i < 18; i++) {
-        for (var j = 0; j < 18; j++) {
+    const opened = window.open("");
+    for (let i = 0; i < 18; i++) {
+        for (let j = 0; j < 18; j++) {
             opened.document.write(tmpMtx[i][j] + " ");
         }
         opened.document.write("<br>");
@@ -236,8 +221,8 @@ function step() {
 }
 function mapBoard() {
     //creates gridmap for board
-    for (var y = 0; y < 9; y++) {
-        for (var x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
+        for (let x = 0; x < 9; x++) {
             if (document.getElementById(`c${y}${x}`).style.borderBottomColor == "red") {
                 maze[2 * y + 1][2 * x + 1] = 1;
                 maze[2 * y + 1][2 * x] = 1;
