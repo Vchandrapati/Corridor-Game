@@ -1,15 +1,22 @@
 "use strict";
+let colour = "rgba(255, 0, 0, 0.7)";
 let myButtons = [], myCellsClick = [], visited = [];
-let maze = new Array(18).fill(0);
-let tmpMtx = new Array(18).fill(0);
-for (let i = 0; i < tmpMtx.length; i++) {
-    tmpMtx[i] = new Array(18).fill(0);
-}
 let rotate = false, mOut = false, vertOnly = false, horzOnly = false;
 let count = 0, wallCount = 1, wallLimit = 10, funcCount = 0;
 let color = "rgba(255, 0, 0, 0.7)";
-let blacklist = [];
-instaniateGrid();
+let Searched = new Array(9).fill(false);
+let AdjUp = new Array(9).fill("0");
+//let AdjDown: string[][];
+let AdjLeft = new Array(9).fill("0");
+let AdjRight = new Array(9).fill("0");
+for (let i = 0; i < AdjUp.length; i++) {
+    Searched[i] = new Array(9).fill(false);
+    AdjUp[i] = new Array(9).fill("0");
+    //let AdjDown: string[][];
+    AdjLeft[i] = new Array(9).fill("0");
+    AdjRight[i] = new Array(9).fill("0");
+}
+let fringe = new Array(0);
 for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
         myCellsClick[count] = document.getElementById(`cc${i}${j}`);
@@ -34,7 +41,7 @@ for (let i = 0; i < 9; i++) {
             let afterPos = parseInt(idAfter);
             //find direction
             let posDiff = afterPos - beforePos;
-            console.log(beforePos);
+            //console.log(beforePos)
             if ((posDiff == -1 && document.getElementById(`c${idBefore}`).style.borderLeftColor != "red") || //left
                 (posDiff == 1 && document.getElementById(`c${idBefore}`).style.borderRightColor != "red") || //right
                 (posDiff == -10 && document.getElementById(`c${idBefore}`).style.borderTopColor != "red") || //top
@@ -53,7 +60,7 @@ for (let i = 0; i < 8; i++) {
         myButtons[count].addEventListener("contextmenu", () => {
             rotate = !rotate;
             clear();
-            preview(color);
+            preview(colour);
         });
         //add listener for left click for the buttons
         myButtons[count].addEventListener("click", () => {
@@ -86,12 +93,13 @@ for (let i = 0; i < 8; i++) {
                         }
                     }
                 }
-                calcRoute();
+                populateAdj();
+                search();
             }
         });
         //mouse hover over listener for buttons
         myButtons[count].addEventListener("mouseover", () => {
-            preview(color);
+            preview(colour);
         });
         //mouse unhover listener for buttons
         myButtons[count].addEventListener("mouseout", () => {
@@ -146,9 +154,10 @@ for (let i = 0; i < 8; i++) {
         function checkInvalidButtons() {
             for (let x = 0; x < 8; x++) {
                 for (let y = 0; y < 8; y++) {
-                    if ((document.getElementById(`c${x}${y}`).style.borderRightColor == "red" || document.getElementById(`c${x + 1}${y}`).style.borderRightColor == "red")
-                        && (document.getElementById(`c${x}${y}`).style.borderBottomColor == "red" || document.getElementById(`c${x}${y + 1}`).style.borderBottomColor == "red")) {
-                        document.getElementById(`b${x}${y}`).style.display = "none";
+                    if (document.getElementById(`c${x}${y}`).style.borderRightColor == "red" || document.getElementById(`c${x + 1}${y}`).style.borderRightColor == "red") {
+                        if (document.getElementById(`c${x}${y}`).style.borderBottomColor == "red" || document.getElementById(`c${x}${y + 1}`).style.borderBottomColor == "red") {
+                            document.getElementById(`b${x}${y}`).style.display = "none";
+                        }
                     }
                 }
             }
@@ -157,97 +166,107 @@ for (let i = 0; i < 8; i++) {
     }
 }
 //#endregion
-function calcRoute() {
-    mapBoard();
-    for (let y = 0; y < maze.length; y++) {
-        for (let x = 0; x < maze.length; x++) {
-            tmpMtx[y][x] = 0;
-        }
-    }
-    for (let y = 0; y < maze.length; y++) {
-        for (let x = 0; x < maze.length; x++) {
-            if (maze[y][x] == 2) {
-                tmpMtx[y][x] = 1;
-                visited.push([y, x]);
+function populateAdj() {
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            if (document.getElementById(`c${j}${i}`).style.borderRightColor != "red") {
+                if (i + 1 < 9) {
+                    AdjRight[i][j] = `${i + 1}${j}`;
+                }
             }
-        }
-    }
-    if (step() == 1) {
-        funcCount = 0;
-        step();
-    }
-    //debugging
-    var opened = window.open("");
-    for (var i = 0; i < 18; i++) {
-        for (var j = 0; j < 18; j++) {
-            opened.document.write(tmpMtx[i][j] + " ");
-        }
-        opened.document.write("<br>");
-    }
-    
-}
-function step() {
-    let y = visited[visited.length - 1][0];
-    let x = visited[visited.length - 1][1];
-    if (maze[y][x] == 3) {
-        return 0;
-    }
-    else if (funcCount == 30) {
-        return 1;
-    }
-    else if (!(blacklist.includes(maze[y - 1][x])) && maze[y - 1][x] == 0) {
-        tmpMtx[y - 1][x] = 1;
-        visited.push([y - 1, x]);
-        funcCount++;
-        step();
-    }
-    else if (!(blacklist.includes(maze[y][x - 1])) && maze[y][x - 1] == 0) {
-        tmpMtx[y][x - 1] = 1;
-        visited.push([y, x - 1]);
-        funcCount++;
-        step();
-    }
-    else if (!(blacklist.includes(maze[y][x + 1])) && maze[y][x + 1] == 0) {
-        tmpMtx[y][x + 1] = 1;
-        visited.push([y, x + 1]);
-        funcCount++;
-        step();
-    }
-    else {
-        blacklist.push([y, x]);
-        visited.pop();
-        funcCount++;
-        step();
-    }
-}
-function mapBoard() {
-    //creates gridmap for board
-    for (let y = 0; y < 9; y++) {
-        for (let x = 0; x < 9; x++) {
-            if (document.getElementById(`c${y}${x}`).style.borderBottomColor == "red") {
-                maze[2 * y + 1][2 * x + 1] = 1;
-                maze[2 * y + 1][2 * x] = 1;
+            else {
+                if (i + 1 < 9) {
+                    AdjRight[i][j] = `0`;
+                }
             }
-            if (document.getElementById(`c${y}${x}`).style.borderLeftColor == "red") {
-                maze[y][2 * x] = 1;
-                maze[2 * y + 1][2 * x] = 1;
-                maze[2 * y][2 * x] = 1;
+            if (document.getElementById(`c${j}${i}`).style.borderTopColor != "red") {
+                if (j - 1 >= 0) {
+                    AdjUp[i][j] = `${i}${j - 1}`;
+                    console.log("Trigger");
+                }
+            }
+            else {
+                if (j - 1 >= 0) {
+                    AdjUp[i][j] = `0`;
+                }
+            }
+            if (document.getElementById(`c${j}${i}`).style.borderLeftColor != "red") {
+                if (i - 1 >= 0) {
+                    AdjLeft[i][j] = `${i - 1}${j}`;
+                }
+            }
+            else {
+                if (i - 1 >= 0) {
+                    AdjLeft[i][j] = `0`;
+                }
             }
         }
     }
 }
-function instaniateGrid() {
-    for (let i = 0; i < maze.length; i++) {
-        maze[i] = new Array(18).fill(0);
+function search() {
+    /*
+    let d = "";
+    for(let i = 0; i < AdjUp.length; i++){
+        for(let j = 0; j < AdjUp[0].length; j++){
+            d = d + " " + AdjUp[j][i];
+        }
+        console.log(d);
+        d = "";
     }
-    maze[16][9] = 2;
-    for (let i = 0; i < maze.length; i++) {
-        maze[0][i] = 3;
+    */
+    for (let i = 0; i < Searched.length; i++) {
+        for (let j = 0; j < Searched.length; j++) {
+            Searched[i][j] = false;
+        }
     }
-    for (let i = 0; i < maze.length; i++) {
-        maze[17][i] = 1;
+    fringe = [];
+    let PathExists = false;
+    Searched[4][8] = true;
+    addToFringe(4, 8);
+    removeAdj(4, 8);
+    printFringe();
+    outer: while (fringe.length > 0) {
+        let currentCell = fringe.shift();
+        //console.log(currentCell);
+        let y = currentCell % 10;
+        currentCell -= currentCell % 10;
+        let x = currentCell / 10;
+        //console.log(`${x} ${y}`);
+        Searched[x][y] = true;
+        addToFringe(x, y);
+        removeAdj(x, y);
+        printFringe();
+        if (y == 0) {
+            PathExists = true;
+            break outer;
+        }
     }
-    for (let i = 0; i < maze.length; i++) {
-        maze[i][0] = 1;
+    console.log(PathExists);
+}
+function printFringe() {
+    let full = "";
+    for (let i = 0; i < fringe.length; i++) {
+        let currentCell = fringe[i];
+        let y = currentCell % 10;
+        currentCell -= currentCell % 10;
+        let x = currentCell / 10;
+        full = full + " " + `${y}${x}`;
+    }
+    console.log(full);
+}
+function removeAdj(x, y) {
+    AdjRight[x][y] = `0`;
+    AdjLeft[x][y] = `0`;
+    AdjUp[x][y] = `0`;
+}
+function addToFringe(x, y) {
+    if (AdjLeft[x][y] != 0) {
+        fringe.unshift(AdjLeft[x][y]);
+    }
+    if (AdjRight[x][y] != 0) {
+        fringe.unshift(AdjRight[x][y]);
+    }
+    if (AdjUp[x][y] != 0) {
+        fringe.unshift(AdjUp[x][y]);
     }
 }
