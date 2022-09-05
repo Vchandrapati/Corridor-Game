@@ -206,7 +206,7 @@ function calcRoute() {
         }
         opened!.document.write("<br>");
     }
-    */
+    
 }
 
 function step() {
