@@ -14,15 +14,8 @@ for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
         myCellsClick[count] = document.getElementById(`cc${i}${j}`);
         myCellsClick[count].addEventListener("click", () => {
-            console.log("ppoo");
             validMove();
         });
-        //mouse hover over listener for playercells
-        //myCellsClick[count].addEventListener("mouseover", () => {
-        // });
-        //mouse unhover listener for playercells
-        //  myCellsClick[count].addEventListener("mouseout", () => {
-        //  });
         function validMove() {
             var _a, _b, _c, _d;
             //position of previous button
@@ -191,13 +184,15 @@ function calcRoute() {
         step();
     }
     //debugging
+    /*
     var opened = window.open("");
     for (var i = 0; i < 18; i++) {
-        for (var j = 0; j < 18; j++) {
-            opened.document.write(tmpMtx[i][j] + " ");
+        for (var j = 0; j < 18; j++)    {
+            opened!.document.write(tmpMtx[i][j] + " ");
         }
-        opened.document.write("<br>");
+        opened!.document.write("<br>");
     }
+    */
 }
 function step() {
     let y = visited[visited.length - 1][0];
