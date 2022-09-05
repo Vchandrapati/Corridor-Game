@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 const path = require("path");
 import dotenv from 'dotenv';
 

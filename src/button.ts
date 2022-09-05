@@ -6,8 +6,8 @@ for (let i = 0; i < tmpMtx.length; i++) {
     tmpMtx[i] = new Array(18).fill(0);
 }
 let rotate = false, mOut = false, vertOnly = false, horzOnly = false;
-let count = 0, wallCount = 1, wallLimit = 1000, funcCount = 0;
-
+let count = 0, wallCount = 1, wallLimit = 10, funcCount = 0;
+let color = "rgba(255, 0, 0, 0.7)";
 let blacklist: any[] = [];
 instaniateGrid();
 
@@ -18,6 +18,13 @@ for(let i = 0; i < 9; i++){
 
         myCellsClick[count].addEventListener("click", () => {
             validMove()
+            //winning condition
+            let pos = parseInt(document.getElementById("p1")?.parentElement?.id.slice(1)!)
+            if(pos >= 80 && pos <= 88) {
+                //red wins
+                console.log("red wins")
+                console.log(pos)
+            }
         });
 
         function validMove() {
@@ -48,8 +55,7 @@ for(let i = 0; i < 8; i++){
         myButtons[count] = document.getElementById(`b${i}${j}`) as HTMLElement; 
         //add listener for right click for the buttons
         myButtons[count].addEventListener("contextmenu", () => {
-            if(rotate) {rotate = false} 
-            else {rotate = true}
+            rotate = !rotate;
             clear()
             preview(global.colour)
         });
@@ -145,30 +151,21 @@ for(let i = 0; i < 8; i++){
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
         function checkInvalidBlocks()
         {
-            if(rotate) { 
-                if(document.getElementById(`c${i}${j}`)!.style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor == "red") {
-                    horzOnly = true
-                }
-                else {
-                    horzOnly = false
-                }
+            if(rotate) {
+                horzOnly = document.getElementById(`c${i}${j}`)!.style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor == "red";
             }
             else {
-                if(document.getElementById(`c${i}${j}`)!.style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor == "red") {
-                    vertOnly = true
-                }
-                else {
-                    vertOnly = false
-                }
+                vertOnly = document.getElementById(`c${i}${j}`)!.style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor == "red";
             }
         }
 
         function checkInvalidButtons() {
             for(let x = 0; x < 8; x++){
                 for(let y = 0; y < 8; y++){
-                    if((document.getElementById(`c${x}${y}`)!.style.borderRightColor == "red" || document.getElementById(`c${x + 1}${y}`)!.style.borderRightColor == "red")
-                    && (document.getElementById(`c${x}${y}`)!.style.borderBottomColor == "red" || document.getElementById(`c${x}${y + 1}`)!.style.borderBottomColor == "red")) {
-                        document.getElementById(`b${x}${y}`)!.style.display = "none";
+                    if (document.getElementById(`c${x}${y}`)!.style.borderRightColor == "red" || document.getElementById(`c${x + 1}${y}`)!.style.borderRightColor == "red") {
+                        if (document.getElementById(`c${x}${y}`)!.style.borderBottomColor == "red" || document.getElementById(`c${x}${y + 1}`)!.style.borderBottomColor == "red") {
+                            document.getElementById(`b${x}${y}`)!.style.display = "none";
+                        }
                     }
                 }
             }
@@ -177,6 +174,7 @@ for(let i = 0; i < 8; i++){
         count++;
     }  
 }
+
 //#endregion
 function calcRoute() {
     mapBoard();
@@ -201,7 +199,6 @@ function calcRoute() {
         step();
     }
     //debugging
-    /*
     var opened = window.open("");
     for (var i = 0; i < 18; i++) {
         for (var j = 0; j < 18; j++)    {
@@ -252,8 +249,8 @@ function step() {
 function mapBoard()
 {
     //creates gridmap for board
-    for (var y = 0; y < 9; y++) {
-        for (var x = 0; x < 9; x++) {
+    for (let y = 0; y < 9; y++) {
+        for (let x = 0; x < 9; x++) {
             if(document.getElementById(`c${y}${x}`)!.style.borderBottomColor == "red"){
                 maze[2 * y + 1][2 * x + 1] = 1;
                 maze[2 * y + 1][2 * x] = 1;
