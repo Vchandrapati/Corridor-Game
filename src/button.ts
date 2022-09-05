@@ -150,10 +150,10 @@ for(let i = 0; i < 8; i++){
         //checks whether a block can be placed by seeing if the adjacent blocks are red or not
         function checkInvalidBlocks()
         {
-            if(rotate) {
+            if(rotate) { 
                 horzOnly = document.getElementById(`c${i}${j}`)!.style.borderRightColor == "red" || document.getElementById(`c${i + 1}${j}`)!.style.borderRightColor == "red";
-            }
-            else {
+                }
+                else {
                 vertOnly = document.getElementById(`c${i}${j}`)!.style.borderBottomColor == "red" || document.getElementById(`c${i}${j + 1}`)!.style.borderBottomColor == "red";
             }
         }
@@ -163,11 +163,11 @@ for(let i = 0; i < 8; i++){
                 for(let y = 0; y < 8; y++){
                     if (document.getElementById(`c${x}${y}`)!.style.borderRightColor == "red" || document.getElementById(`c${x + 1}${y}`)!.style.borderRightColor == "red") {
                         if (document.getElementById(`c${x}${y}`)!.style.borderBottomColor == "red" || document.getElementById(`c${x}${y + 1}`)!.style.borderBottomColor == "red") {
-                            document.getElementById(`b${x}${y}`)!.style.display = "none";
-                        }
+                        document.getElementById(`b${x}${y}`)!.style.display = "none";
                     }
                 }
             }
+        }
         }
 
         count++;
