@@ -1,3 +1,4 @@
+import global from '../src/globals';
 let myButtons = [], myCellsClick= [], visited: any[] = [];
 let maze = new Array(18).fill(0);
 let tmpMtx = new Array(18).fill(0)
@@ -56,7 +57,7 @@ for(let i = 0; i < 8; i++){
         myButtons[count].addEventListener("contextmenu", () => {
             rotate = !rotate;
             clear()
-            preview(color)
+            preview(global.colour)
         });
         //add listener for left click for the buttons
         myButtons[count].addEventListener("click", () => {
@@ -98,7 +99,7 @@ for(let i = 0; i < 8; i++){
         }); 
         //mouse hover over listener for buttons
         myButtons[count].addEventListener("mouseover", () => {
-            preview(color);
+            preview(global.colour);
         });
         
         //mouse unhover listener for buttons
@@ -198,13 +199,14 @@ function calcRoute() {
         step();
     }
     //debugging
-    const opened = window.open("");
-    for (let i = 0; i < 18; i++) {
-        for (let j = 0; j < 18; j++)    {
+    var opened = window.open("");
+    for (var i = 0; i < 18; i++) {
+        for (var j = 0; j < 18; j++)    {
             opened!.document.write(tmpMtx[i][j] + " ");
         }
         opened!.document.write("<br>");
     }
+    */
 }
 
 function step() {

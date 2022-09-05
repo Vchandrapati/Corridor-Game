@@ -177,13 +177,14 @@ function calcRoute() {
         step();
     }
     //debugging
-    const opened = window.open("");
-    for (let i = 0; i < 18; i++) {
-        for (let j = 0; j < 18; j++) {
+    var opened = window.open("");
+    for (var i = 0; i < 18; i++) {
+        for (var j = 0; j < 18; j++) {
             opened.document.write(tmpMtx[i][j] + " ");
         }
         opened.document.write("<br>");
     }
+    
 }
 function step() {
     let y = visited[visited.length - 1][0];
